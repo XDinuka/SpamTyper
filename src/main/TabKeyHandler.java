@@ -4,29 +4,29 @@ package main;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
-public class EnterKeyHandler implements Handler {
+public class TabKeyHandler implements Handler {
 
 
-    private static EnterKeyHandler enterKeyHandler;
+    private static TabKeyHandler tabKeyHandler;
 
-    private EnterKeyHandler() {
+    private TabKeyHandler() {
 
     }
 
-    public static EnterKeyHandler getInstance() {
-        if (EnterKeyHandler.enterKeyHandler == null) {
-            synchronized (EnterKeyHandler.class) {
-                if (EnterKeyHandler.enterKeyHandler == null) {
-                    enterKeyHandler = new EnterKeyHandler();
+    public static TabKeyHandler getInstance() {
+        if (TabKeyHandler.tabKeyHandler == null) {
+            synchronized (TabKeyHandler.class) {
+                if (TabKeyHandler.tabKeyHandler == null) {
+                    tabKeyHandler = new TabKeyHandler();
                 }
             }
         }
-        return enterKeyHandler;
+        return tabKeyHandler;
     }
 
     public void handle(Robot robot) {
-        robot.keyPress(KeyEvent.VK_ENTER);
-        robot.keyRelease(KeyEvent.VK_ENTER);
+        robot.keyPress(KeyEvent.VK_TAB);
+        robot.keyRelease(KeyEvent.VK_TAB);
     }
 
 }

@@ -1,20 +1,17 @@
 package main;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
-import java.security.Key;
 
 public class StaticTextHandler implements Handler {
 
-    private Robot robot;
+
     private char[] text;
     private int[] keyCodes;
 
-    public StaticTextHandler(Robot robot, String string) {
-        if (robot == null || string == null || string.isEmpty())
+    public StaticTextHandler( String string) {
+        if (string == null || string.isEmpty())
             throw new NullPointerException("StaticTextHandler expects all parameters to be not null");
-        this.robot = robot;
         this.text = string.toCharArray();
         keyCodes = new int[text.length];
         for (int i = 0; i < text.length; i++) {
@@ -23,8 +20,8 @@ public class StaticTextHandler implements Handler {
 
     }
 
-
-    public void handle() {
+    @Override
+    public void handle(Robot robot) {
 
         for (int i = 0; i < text.length; i++) {
             boolean upperCase = Character.isUpperCase(text[i]);

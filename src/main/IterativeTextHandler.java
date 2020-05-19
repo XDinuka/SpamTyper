@@ -1,21 +1,20 @@
 package main;
 
-import java.awt.*;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
 public class IterativeTextHandler implements Handler {
 
-    private Robot robot;
+
     private int number;
     private int delta;
 
-    public IterativeTextHandler(Robot robot, int start, int delta) {
-        this.robot = robot;
+    public IterativeTextHandler( int start, int delta) {
         this.number = start;
         this.delta = delta;
     }
 
-    public void handle() {
+    public void handle(Robot robot) {
 
         char[] text = String.valueOf(number).toCharArray();
         int[] keyCodes = new int[text.length];

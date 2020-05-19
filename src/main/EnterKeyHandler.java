@@ -1,26 +1,30 @@
 package main;
 
-import jdk.internal.org.objectweb.asm.Handle;
 
-import java.awt.*;
+import java.awt.Robot;
 import java.awt.event.KeyEvent;
 
 public class EnterKeyHandler implements Handler {
 
-    private Robot robot;
+
     private static EnterKeyHandler enterKeyHandler;
 
-    private EnterKeyHandler(Robot robot) {
-        this.robot = robot;
+    private EnterKeyHandler() {
+
     }
 
-    public static EnterKeyHandler getInstance(Robot robot) {
-        if (EnterKeyHandler.enterKeyHandler == null)
-            enterKeyHandler = new EnterKeyHandler(robot);
+    public static EnterKeyHandler getInstance() {
+        if (EnterKeyHandler.enterKeyHandler == null) {
+            synchronized (EnterKeyHandler.class) {
+                if (EnterKeyHandler.enterKeyHandler == null) {
+                    enterKeyHandler = new EnterKeyHandler();
+                }
+            }
+        }
         return enterKeyHandler;
     }
 
-    public void handle() {
+    public void handle(Robot robot) {
         robot.keyPress(KeyEvent.VK_ENTER);
         robot.keyRelease(KeyEvent.VK_ENTER);
     }
